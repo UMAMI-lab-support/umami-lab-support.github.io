@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="robots" content="noindex"><title>結果欄のデザイン案</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=M+PLUS+Rounded+1c:wght@300;400;500;700;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=DM+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"><style>
+:root{--ink:#111;--mute:#666;--soft:#999;--bg:#fff;--bg2:#fafaf7;--y:#fbf3d9;--b:#e6f0f8;--g:#e8f3e3;--p:#f6e6ec;--br:#f1e8da;--gr:#efefeb;}
+:root{--trk-bg:#ffffff;--trk-in:#f3f8ef;--trk-turf:#dcebd4;--trk-dirt:#e8d9c4;--trk-tree:#cfe4c4;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg2)}
+body{background:var(--bg2);color:var(--ink);font-family:'M PLUS Rounded 1c','Zen Kaku Gothic New','Hiragino Maru Gothic ProN',Meiryo,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.mono{font-family:'DM Mono',monospace;font-variant-numeric:tabular-nums}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit}
+svg.ic{width:100%;height:100%;fill:none;stroke:#111;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block}
+.wrap{max-width:520px;margin:0 auto;padding:12px 14px 90px;min-height:100vh}
+/* header */
+.hd{display:flex;align-items:center;justify-content:space-between;min-height:40px}
+.hd .wm{display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-size:26px;font-weight:700;letter-spacing:.1em;line-height:1}
+.hd .wm i{width:28px;height:28px;display:block}
+.hd .wm small{display:block;font-family:'M PLUS Rounded 1c',sans-serif;font-size:9.5px;letter-spacing:.18em;color:var(--mute);margin-top:4px;font-weight:500;white-space:nowrap;text-align:center}
+.hd .wm>div{text-align:center}
+.hd .wm .kana{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;letter-spacing:.06em;font-size:24px}
+.hd .wm small.en{font-family:'Outfit',sans-serif;letter-spacing:.3em;font-weight:700}
+.hd .dt{font-family:'DM Mono',monospace;font-size:11px;color:var(--mute);text-align:right;line-height:1.4}
+.hd .dt b{display:block;color:var(--ink);font-size:13px;font-weight:400}
+.hd .bk{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:6px 10px 6px 6px;border:1.5px solid var(--ink);border-radius:999px;background:#fff}
+.hd .bk i{width:14px;height:14px;display:block}
+section{display:none}section.on{display:block}
+h2{font-size:17px;font-weight:700;margin-top:14px;display:flex;align-items:center;gap:8px}
+h2 i{width:24px;height:24px;display:block}
+.lead{font-size:11.5px;color:var(--mute);margin-top:2px;line-height:1.6}
+h3{font-family:'DM Mono';font-size:10px;letter-spacing:.24em;color:var(--mute);font-weight:400;margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+h3::after{content:"";flex:1;height:1.5px;background:#ddd}
+/* segmented */
+.seg{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff}
+.seg button{flex:1;padding:8px 0;font-size:12.5px;font-weight:700;color:var(--mute)}
+.seg button.on{background:var(--ink);color:#fff}
+.seg.sm button{padding:6px 0;font-size:11.5px}
+.seg.ten button{font-size:11px;padding:7px 0}
+.seg.dsel{margin:10px 0 0}.seg.dsel button{font-size:12.5px;padding:9px 0}
+.tkt.four{grid-template-columns:repeat(4,1fr)}
+.row2{display:flex;gap:8px;align-items:center;margin-top:6px}.row2 input{margin-top:0;flex:1;min-width:0}.row2 .lnk-s{margin-left:0;white-space:nowrap;padding:8px 10px}.fl{display:block;font-family:'DM Mono';font-size:9.5px;color:var(--mute);letter-spacing:.06em;margin-top:12px}
+.fr{padding:8px 0 10px;border-bottom:1px solid #e3e3df}.fr:last-child{border-bottom:none}.fh{display:flex;justify-content:space-between;align-items:center;font-size:13px}.fh b{font-weight:700}.fh .mono{font-size:13px}.fr input[type=range]{width:100%;accent-color:#111;margin:6px 0 2px}.fd{font-size:10.5px;color:var(--mute);line-height:1.5}
+input.kb{width:100%;height:42px;box-sizing:border-box;padding:0 10px;border:1.5px solid var(--ink);border-radius:10px;font-size:14px;font-weight:700;background:#fff;margin-top:8px}
+.cl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}.cl button{height:34px;border:1.5px solid var(--ink);border-radius:999px;background:#fff;font-size:12px;font-weight:700;white-space:nowrap}.cl button.on{background:var(--ink);color:#fff}
+.elv{display:block;width:100%;height:70px;margin-top:8px}
+.kv4{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.kv4 div{border:1.5px solid var(--ink);border-radius:10px;padding:7px 8px}.kv4 label{font-family:'DM Mono';font-size:9px;color:var(--mute);display:block;letter-spacing:.06em}.kv4 b{font-size:14px;font-weight:700;white-space:nowrap}.kv4 b small{font-size:10px;color:var(--mute);font-weight:500;margin-left:3px}
+/* baba strip */
+.strip{margin-top:12px;border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;background:#fff}
+.strip .ln{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1.5px solid #e6e6e2;width:100%;text-align:left}
+.strip .ln:last-of-type{border-bottom:none}
+.strip .ln i{width:20px;height:20px;display:block;flex:0 0 20px}
+.strip .ln b{font-size:14px;font-weight:700;width:44px}
+.strip .ln .v{font-size:11.5px;color:var(--mute);font-weight:500;flex:1}
+.strip .ln .v em{font-style:normal;font-family:'DM Mono';color:var(--ink);font-weight:400}
+.strip .ln .ar{width:12px;height:12px;display:block;transition:transform .15s}
+.strip .ln.open .ar{transform:rotate(90deg)}
+.strip .dt{display:none;padding:0 12px 12px;border-bottom:1.5px solid #e6e6e2}
+.strip .dt.on{display:block}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--ink);border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;margin-top:10px}
+.kv div{background:#fff;padding:8px 8px 6px}
+.kv div.c{background:var(--gr,#efefeb)}
+.kv div.t{background:var(--g)}
+.kv div.d{background:var(--br)}
+.kv label{display:block;font-size:9.5px;color:var(--mute);font-weight:500}
+.kv b{font-family:'DM Mono';font-size:20px;font-weight:400}
+.kv b small{font-size:10px;color:var(--mute);margin-left:2px}
+.kv i{display:block;font-size:9px;color:var(--mute);font-style:normal;font-weight:500}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:4px}
+.hw{overflow-x:auto;margin:0 -12px;padding:0 12px}
+.hg{display:grid;gap:3px;min-width:600px}
+.hg div{text-align:center;font-size:9px;color:var(--mute);padding:4px 0;border-top:1.5px solid #ddd;font-weight:500}
+.hg div b{display:block;font-family:'DM Mono';font-size:10px;color:var(--ink);font-weight:400}
+.hg div i{display:block;width:18px;height:18px;margin:2px auto}
+.hg div span{display:block;font-family:'DM Mono';font-size:10px;color:var(--ink);font-weight:400}
+.hg div span.pr{font-size:9px;color:var(--mute)}
+.hg div.w-sun{background:#fbeedd;border-radius:6px;border-top-color:#f0ddc4}
+.hg div.w-cloud{background:#efefed;border-radius:6px;border-top-color:#e2e2df}
+.hg div.w-snow{background:#eef3f7;border-radius:6px;border-top-color:#dbe5ed}
+.hg div.w-rain,.hg div.rain{background:var(--b);border-radius:6px;border-top-color:#cfe0ee}
+.wk div{text-align:center;font-size:9px;color:var(--mute);padding:4px 0;border-top:1.5px solid #ddd}
+.wk div b{display:block;font-family:'DM Mono';font-size:12px;color:var(--ink);font-weight:400}
+.wk div i{display:block;width:18px;height:18px;margin:2px auto}
+.wk div.w-sun{background:#fbeedd;border-radius:6px;border-top-color:#f0ddc4}
+.wk div.w-cloud{background:#efefed;border-radius:6px;border-top-color:#e2e2df}
+.wk div.w-snow{background:#eef3f7;border-radius:6px;border-top-color:#dbe5ed}
+.wk div.w-rain,.wk div.rain{background:var(--b);border-radius:6px;border-top-color:#cfe0ee}
+.wk div i.sw{width:13px;height:13px;margin:1px auto 0;opacity:.6}
+.note{font-size:11px;color:var(--mute);line-height:1.7;margin-top:8px}
+.tico{margin-top:10px;border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;background:#fff}
+.tico svg{display:block}
+.tico .wl{font-size:11px;font-weight:500;padding:8px 10px;border-top:1.5px solid var(--ink);background:#fafaf7}
+.tico .wl b{margin:0 2px}
+.note li{margin-left:1.2em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-size:11px;font-weight:500;padding:5px 10px;border:1.5px solid var(--ink);border-radius:999px;background:#fff}
+.chip b{font-family:'DM Mono';font-weight:400;margin-left:4px}
+.chip.y{background:var(--y)}.chip.g{background:var(--g)}.chip.b{background:var(--b)}
+/* race grid */
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--ink);border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;margin-top:10px}
+.rb{background:#fff;padding:8px 7px 7px;text-align:left;min-height:62px;position:relative}
+.rb .rn{font-family:'DM Mono';font-size:15px;font-weight:400;line-height:1}
+.rb .rn i{font-style:normal;font-size:8.5px;color:var(--soft);margin-left:3px}
+.rb .nm{font-size:9.5px;color:var(--mute);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.rb .cd{font-family:'DM Mono';font-size:8.5px;margin-top:2px;color:var(--mute)}
+.rb.g{background:var(--y)}
+.rb.next{box-shadow:inset 0 0 0 1.5px var(--ink);background:var(--g)}
+.rb .tag{position:absolute;right:5px;top:5px;font-family:'DM Mono';font-size:7.5px;color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:0 4px}
+.rb.dis{background:#f1f1ee;color:#b5b5b0;cursor:default}
+.rb.dis .rn,.rb.dis .nm,.rb.dis .cd,.rb.dis .rn i{color:#b5b5b0}
+.rb .done{position:absolute;right:5px;top:5px;width:12px;height:12px}
+/* race page */
+.rh{margin-top:10px;text-align:center}
+.rh .no{font-family:'DM Mono';font-size:10px;letter-spacing:.2em;color:var(--mute)}
+.rh b{display:block;font-size:21px;font-weight:700;margin-top:2px}
+.rh span{display:block;font-family:'DM Mono';font-size:10.5px;color:var(--mute);margin-top:2px}
+.steps{position:sticky;top:0;z-index:20;background:#fff;padding:10px 0 8px;margin-top:8px}
+.rh{position:relative}
+.rnav{position:absolute;top:calc(50% - 4px);transform:translateY(-50%);width:34px;height:34px;
+  border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);
+  font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;flex:none}
+.rnav.p{left:0}.rnav.n{right:0}
+.rnav:disabled{opacity:.22}
+.steps .stk .rnav{position:static;transform:none;width:24px;height:24px;font-size:12px}
+.steps .stk span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.steps .stk{display:none;align-items:center;gap:6px;padding:0 2px 7px;font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.steps .stk .no{font-family:'DM Mono';font-size:10.5px;color:var(--mute);font-weight:400;flex:none}
+.steps .stk .gd{font-family:'DM Mono';font-size:10px;color:var(--mute);font-weight:400;flex:none}
+.steps.on .stk{display:flex}
+.steps .in{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff}
+.steps button{flex:1;padding:8px 0;font-size:11.5px;font-weight:700;color:var(--mute);display:flex;align-items:center;justify-content:center;gap:4px}
+.steps button i{font-style:normal;font-family:'DM Mono';font-size:10px}
+.steps button.on{background:var(--ink);color:#fff}
+.steps button .lk{width:10px;height:10px;display:block}
+.steps button.on .lk svg{stroke:#fff}
+.sec{margin-top:18px;scroll-margin-top:64px}
+.sec .sh{display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--ink);padding-bottom:6px}
+.sec .sh i{font-family:'DM Mono';font-size:11px;font-weight:400;font-style:normal}
+.sec .sh b{font-size:15px;font-weight:700}
+.sec .sh span{font-size:10.5px;color:var(--mute);margin-left:auto;font-weight:500}
+.bub{position:relative;border:1.5px solid var(--ink);border-radius:14px;background:#fff;padding:14px 12px 12px;margin-top:14px}
+.bub.tail:after{content:"";position:absolute;left:50%;bottom:-10px;width:16px;height:16px;background:#fff;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.cat{display:flex;align-items:flex-start;justify-content:space-between}
+.cat .it{flex:1;text-align:center;min-width:0}
+.cat .it i{display:block;width:40px;height:40px;margin:0 auto 6px}
+.cat .it b{display:block;font-family:'DM Mono';font-size:9.5px;font-weight:400;letter-spacing:.04em}
+.cat .it small{display:block;font-size:9.5px;color:var(--mute);margin-top:2px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat .plus{font-family:'DM Mono';font-size:16px;font-weight:400;padding-top:12px}
+.t{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+.t th{font-family:'DM Mono';font-size:9.5px;color:var(--mute);font-weight:400;text-align:right;padding:6px 6px;border-bottom:1.5px solid var(--ink);white-space:nowrap;letter-spacing:.06em}
+.t td{padding:7px 6px;border-bottom:1px solid #e3e3df;text-align:right;white-space:nowrap}
+.t th.l,.t td.l{text-align:left}
+.t td.nm{font-weight:700;white-space:nowrap;line-height:1.15}
+.t td small{color:var(--soft);font-family:'DM Mono';font-size:9.5px;margin-left:4px;font-weight:400}
+.t td.nm small{display:block;margin:1px 0 0}
+.t tr.hi td{background:var(--g)}
+.t.cmp td.l{white-space:nowrap;line-height:1.35;font-size:12px}
+.t.cmp td.l small{display:block;font-size:10px;font-weight:400;color:var(--soft);line-height:1.3;margin-top:1px}.t.cmp td:not(.l),.t.cmp th:not(.l){width:52px;text-align:center;white-space:nowrap}
+.t tr.gb td{background:var(--g)}.t tr.gs td{background:var(--p)}.t td.nm1{white-space:nowrap;font-weight:800}
+.nm2{font-weight:800;margin-left:4px}.gapt td,.gapt th{white-space:nowrap}
+.tw{overflow-x:auto;margin:0 -14px;padding:0 14px}
+.cap{display:inline-flex;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-family:'DM Mono';font-weight:400;font-size:11.5px;box-shadow:inset 0 0 0 1.5px #111}
+.kb{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;border:1.5px solid var(--ink)}
+.kb.nige{background:var(--ink);color:#fff}.kb.senko{background:var(--y)}.kb.sashi{background:var(--b)}.kb.oikomi{background:#fff}
+.lock{border:1.5px dashed var(--ink);border-radius:14px;padding:18px 14px;text-align:center;margin-top:12px;background:#fff}
+.lock i{width:32px;height:32px;display:block;margin:0 auto 8px}
+.lock p{font-size:12px;color:var(--mute);margin-bottom:12px;font-weight:500}
+.lock .pw{display:flex;gap:6px;max-width:320px;margin:0 auto}
+.lock input{flex:1;padding:10px;border:1.5px solid var(--ink);border-radius:999px;font-size:15px;text-align:center;letter-spacing:.14em;font-family:'DM Mono';min-width:0}
+.lock button{padding:10px 16px;background:var(--ink);color:#fff;border-radius:999px;font-weight:700;font-size:13px}
+.lock .er{color:#c0392b;font-size:11.5px;margin-top:8px;display:none}
+.lock .n{font-size:10px;color:var(--soft);margin-top:10px}
+/* ===== 案5 大見出し ===== */
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}  /* 勝手な文字の拡大を止める */
+body{word-break:auto-phrase}                                    /* 語の途中で折り返さない */
+h2{font-size:22px;font-weight:800;letter-spacing:.02em}
+.lead{font-size:11.5px;color:var(--mute);line-height:1.85;margin-top:9px}
+h3{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:.02em;
+   margin:34px 0 0;padding:0;border:none;background:none;text-align:left;display:block}
+h3:after{display:none}
+h3 small{display:block;margin:5px 0 0;font-size:10.5px;font-weight:400;color:var(--soft)}
+.sbd{padding-left:13px;border-left:2px solid var(--line);margin-top:11px}
+.card{border:none;box-shadow:none;background:none;border-radius:0;padding:0;margin-top:12px}
+.card>.ttl{padding:0;border:none;background:none;margin-bottom:8px}
+.card>.ttl>i{display:none}
+.card>.ttl b{font-size:13.5px;font-weight:800}
+.card>.ttl span{font-size:11px;color:var(--mute)}
+.chips{display:block}
+.chip{border:none;border-radius:0;padding:0;background:none}
+.khero{display:flex;align-items:flex-end;gap:8px}
+.khero .n{font-family:'DM Mono';font-size:29px;line-height:1}
+.khero .u{font-size:11px;color:var(--mute);padding-bottom:2px}
+.khero .v{margin-left:auto;font-size:12.5px;font-weight:700;padding-bottom:2px}
+.krows{margin-top:6px}
+.krow{display:flex;align-items:baseline;gap:12px;padding:4.5px 0;font-size:12.5px}
+.krow i{font-style:normal;color:var(--soft);font-size:11px;flex:none;letter-spacing:.02em}
+.krow span{margin-left:auto;text-align:right;font-family:'DM Mono';font-size:13.5px;font-weight:500;color:var(--ink)}
+table.t td,table.t th{padding-top:9px;padding-bottom:9px}
+.tw{margin-top:7px}
+.tico{border:1px solid var(--line);border-radius:9px}
+.note{font-size:10.5px;line-height:1.75}
+.sec{padding-left:18px;padding-right:18px}
+/* ===== ここまで ===== */
+/* ===== 試作: 参考サイト寄せ ===== */
+:root{--ink:#000;--mute:#5a5a5a;--soft:#9a9a9a;--line:#d8d8d8;--bg2:#efefef}
+html,body{background:#efefef}
+body{font-family:'Noto Sans JP','M PLUS Rounded 1c','Zen Kaku Gothic New',Meiryo,sans-serif;
+     font-weight:500;letter-spacing:.14em;line-height:1.95;color:#000}
+b,strong{font-weight:700}
+.wrap{background:#fff;max-width:520px}
+/* 数字・表・操作まわりは字間を詰める（広げると比べにくくなるため） */
+.mono,table.t,table.t td,table.t th,.krow span,.nav button,.nav button em,.steps b,.seg button,
+.rg,.rg *,.tkt button,.pace .pb,.chip,.kv4 b,.kst b,.stat b,.hcg b,input,button.lnk-s,.dt,.rh .pl,.rh .sub
+  {letter-spacing:.02em}
+h2{position:sticky;top:0;z-index:25;background:#fff;margin:0 -14px;padding:12px 14px 11px;
+   font-size:16px;font-weight:700;letter-spacing:.15em;line-height:1.4;border-bottom:1px solid var(--line)}
+h2 i{width:19px;height:19px}
+h3{font-size:18px;font-weight:700;letter-spacing:.16em;line-height:1.55;margin-top:68px;color:#000}
+h3 small{letter-spacing:.06em;display:block;margin:5px 0 0}
+.sbd{border-left:2px solid var(--line);padding-left:14px;margin-top:13px}
+.lead{font-size:12px;line-height:2.1;color:var(--mute);letter-spacing:.12em}
+.note{color:var(--soft);line-height:2;letter-spacing:.1em}
+.krow{border-top:1px solid var(--line)}
+.krow span b{display:block;font-weight:inherit;line-height:1.75}
+.s3alt{color:var(--soft)}
+.s3alt i{font-style:normal;font-size:8.5px;margin-left:2px;letter-spacing:0}
+.tw,.tico{border-radius:2px}
+.tico{border:1px solid var(--line)}
+.fsvg{border:none;border-radius:0}
+table.t td,table.t th{border-color:var(--line)}
+/* ===== ここまで ===== */
+/* ===== 選択中の塗りと、枠・仕切りのグレー ===== */
+.seg button.on,.steps button.on,.pace .pb.on,.tkt button.on,.nc.on,.cl button.on,.nbh button.on,
+.bp,.lock button{background:#c4c4c4;color:#000;border-color:#c4c4c4}
+.steps button.on .lk svg,.bp svg{stroke:#000}
+.seg,.steps .in,.cl button,.kv4 div,.trk,.pace .pb,.tkt button,.nc,.hcg{border-color:#9a9a9a}
+.rg,.kv,.stat,.hcg{background:#9a9a9a;border-color:#9a9a9a}
+/* ===== ここまで ===== */
+/* ===== レース目次: 芝ダで色分け・1枚ずつ独立 ===== */
+.rg{gap:6px;background:none;border:none;border-radius:0;overflow:visible}
+.rb{border:1px solid transparent;border-radius:8px;padding:9px 8px;min-height:66px}
+.rb.turf{background:#e9f2e5}
+.rb.dirt{background:#f2ebe1}
+.rb.next{box-shadow:none;border-color:#6aa860}
+.rb .tg{position:absolute;right:5px;top:5px;display:flex;gap:4px;align-items:center}
+.rb .tg .done{position:static;width:11px;height:11px}   /* 2つ付いたら横に並べる */
+.rb .tag{position:static;background:#fff;font-size:8.5px;padding:0 6px;line-height:1.85;font-weight:500}
+.rb .tag.free{background:#111;color:#fff;border-color:#111;font-weight:700}
+.rb.dis{background:#f4f4f2;border-color:transparent}
+/* ===== ここまで ===== */
+.trk .wlg{position:absolute;right:10px;bottom:20px;font-family:'DM Mono';font-size:9px;
+  color:var(--soft);letter-spacing:.02em;text-align:right;line-height:1.5}
+.wsw{display:flex;align-items:center;gap:9px;margin-top:9px;font-size:11px;color:var(--mute)}
+.tgl{width:40px;height:23px;border-radius:999px;border:1px solid #9a9a9a;background:#fff;position:relative;padding:0;flex:none}
+.tgl i{position:absolute;left:2px;top:2px;width:17px;height:17px;border-radius:50%;background:#9a9a9a;
+  transition:left .16s,background .16s}
+.tgl.on{background:#c4c4c4;border-color:#c4c4c4}
+.tgl.on i{left:19px;background:#111}
+/* sim */
+.trk{position:relative;border:1.5px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--trk-bg);margin-top:12px}
+.trk canvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
+.trk .st{position:absolute;left:12px;top:10px;font-size:12px;font-weight:700;line-height:1.3}
+.trk .st small{display:block;font-family:'DM Mono';font-size:9px;font-weight:400;color:var(--mute)}
+.trk .lg{position:absolute;right:10px;top:10px;font-family:'DM Mono';font-size:9px;line-height:1.5;color:var(--mute);text-align:right}
+.trk .cp{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:'DM Mono';font-size:8.5px;color:var(--soft)}
+.lead2{position:absolute;left:10px;bottom:20px;display:flex;align-items:center;gap:3px}
+.lead2 span{font-family:'DM Mono';font-size:9px;color:var(--mute);margin-right:2px}
+.lead2 b{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-family:'DM Mono';font-weight:400;box-shadow:inset 0 0 0 1.5px #111}
+.fmt{margin-top:8px}
+.fmt .fml{font-family:'DM Mono';font-size:9px;letter-spacing:.2em;color:var(--mute);margin:4px 0 2px}
+.fmt canvas{display:block;width:100%;height:100px}
+.btns{display:flex;gap:8px;margin-top:12px}
+.bp{flex:1.7;padding:13px 8px;border-radius:999px;background:var(--ink);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--ink)}
+.bp:disabled{opacity:.5}
+.bp,.bs{white-space:nowrap}
+.bp svg{width:11px;height:11px;fill:#fff}
+.bs{flex:1;padding:13px 6px;border-radius:999px;border:1.5px solid var(--ink);font-size:12.5px;font-weight:700;background:#fff}
+.bs.on{background:var(--g)}
+.bs:disabled{opacity:.4}
+.pace{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;font-size:12px;font-weight:700}
+.pace .pb{min-width:36px;width:auto;padding:0 10px;height:32px;border-radius:999px;border:1.5px solid var(--ink);font-family:'DM Mono';font-size:14px;font-weight:400;background:#fff;white-space:nowrap}
+.pace .pb.on{background:var(--ink);color:#fff}
+.pace .pbw{width:auto;min-width:56px;padding:0 11px;font-family:inherit;font-size:11.5px;font-weight:700;white-space:nowrap}
+.bnote{font-size:11px;color:var(--mute);margin-top:7px;line-height:1.75}
+.cacc{margin-top:10px;border-top:1px solid var(--line)}
+.cacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;padding:10px 0}
+.cacc>summary::-webkit-details-marker{display:none}
+.cacc>summary .ar{width:8px;height:8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .15s}
+.cacc[open]>summary .ar{transform:rotate(-135deg)}
+.cacc>summary .cnt{font-family:'DM Mono';font-size:11px;color:var(--mute);font-weight:400;margin-left:auto}
+.cacc .cd{padding:0 0 10px;width:100%;box-sizing:border-box}
+.crl .blk{padding:12px 0;border-bottom:1px solid var(--line);width:100%;box-sizing:border-box}
+.crl .hd2{display:flex;align-items:baseline;gap:10px;width:100%}
+.crl .nm{flex:1;min-width:0;font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crl .sub{display:block;font-size:10.5px;font-weight:400;color:var(--mute);margin-top:3px}
+.crl .pl{font-family:'DM Mono';font-size:14px;font-weight:700;white-space:nowrap}
+.crl .pl.up{color:#0f6e56}
+.crl .pl.dn{color:var(--soft)}
+.crl .bets{margin-top:8px;border-left:2px solid var(--line);padding-left:9px;width:100%;box-sizing:border-box}
+.crl .b1{display:flex;align-items:baseline;gap:8px;font-size:11.5px;padding:2px 0;width:100%}
+.crl .b1 .k{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crl .b1 .c{font-family:'DM Mono';font-size:10.5px;color:var(--mute);width:38px;text-align:right}
+.crl .b1 .v{font-family:'DM Mono';width:52px;text-align:right}
+.crl .b1 .v.hit{color:#0f6e56;font-weight:700}
+.crl .b1 .v.miss{color:var(--soft)}
+.crl .sm2{display:flex;gap:8px;font-size:11px;color:var(--mute);margin-top:7px;padding-left:11px}
+.crl .sm2 b{color:var(--ink);font-family:'DM Mono';font-weight:700}
+.crl .tot{display:flex;align-items:baseline;gap:10px;padding:13px 0 2px;border-top:1.5px solid var(--ink)}
+.crl .tot .nm{font-size:12.5px}
+.crl .tot .pl{font-size:16px}
+.hadj{margin-top:12px}
+.hadj>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;padding:9px 0}
+.hadj>summary::-webkit-details-marker{display:none}
+.hadj>summary .ar{width:9px;height:9px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .15s;margin-left:1px}
+.hadj[open]>summary .ar{transform:rotate(-135deg)}
+.hadj>summary .cnt{font-family:'DM Mono';font-size:11px;color:var(--mute);font-weight:400;flex:1}
+.hadj .rst{font-size:11px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:400}
+.hadj .rw{display:flex;align-items:center;gap:7px;padding:2px 0}
+.hadj .rw .nm{flex:1;min-width:0;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hadj .rw .pv{font-family:'DM Mono';font-size:12.5px;width:50px;text-align:right}
+.hadj .rw.up .pv{color:#0f6e56;font-weight:700}
+.hadj .rw.dn .pv{color:#b8641a;font-weight:700}
+.hadj .bt{width:30px;height:30px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:17px;line-height:1;padding:0}
+.hadj .bt:disabled{opacity:.25}
+.sh .lnk-s:disabled{opacity:.5}.sh .ost{font-style:normal;font-size:10px;color:var(--mute);margin-right:6px}
+.lnk-s{margin-left:8px;border:1.5px solid var(--ink);border-radius:999px;background:#fff;font-size:10px;font-weight:700;padding:3px 8px}
+
+.pace .nt{flex-basis:100%;font-size:10px;color:var(--soft);font-weight:500;margin-top:2px;padding-left:2px}
+.b10k{margin-top:10px;width:100%;padding:12px 12px;border-radius:999px;border:1.5px solid var(--ink);font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;background:#fff}
+.b10k:disabled{opacity:.5}
+.b10k i{width:16px;height:16px;display:block}
+.res{margin-top:12px}
+.res .row{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #e3e3df;font-size:13px;font-weight:700}
+.res .row .pl{width:34px;font-family:'DM Mono';font-size:12px;font-weight:400;color:var(--mute)}
+.res .row .nm{flex:1}.res .row .nm small{font-weight:500;color:var(--soft);margin-left:5px;font-size:10px}
+.res .row.top .pl{color:var(--ink)}
+.bar{display:inline-block;height:6px;background:var(--ink);vertical-align:middle;margin-right:5px;border-radius:3px}
+.free-n{font-size:11px;color:#b8641a;font-weight:700;margin-top:8px}
+.kin{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.kin label{font-family:'DM Mono';font-size:9.5px;color:var(--mute);display:block;letter-spacing:.06em}
+.kin input,.kin select{width:100%;height:42px;box-sizing:border-box;padding:0 10px;border:1.5px solid var(--ink);border-radius:10px;font-size:14px;font-weight:700;background:#fff}.kin input{font-family:'DM Mono';text-align:right}
+.t input.c{width:56px;padding:4px;border:1.5px solid #ccc;border-radius:6px;font-size:12.5px;text-align:right;font-family:'DM Mono'}
+.tkt{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:8px 0}.tkt button{height:32px;padding:0;border-radius:999px;border:1.5px solid var(--ink);background:#fff;font-size:11px;font-weight:700;white-space:nowrap}.tkt button.on{background:var(--ink);color:#fff}
+.nbh{display:flex;align-items:center;gap:8px;margin:10px 0 4px}.nbh label{font-family:'DM Mono';font-size:9.5px;color:var(--mute);letter-spacing:.06em}.nbh button{border:1.5px solid var(--ink);border-radius:999px;background:#fff;font-size:10px;font-weight:700;padding:2px 9px}.nbh button.on{background:var(--ink);color:#fff}
+.nb6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.nc{height:44px;border:1.5px solid var(--ink);border-radius:8px;background:#fff;padding:0 3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0}.nc b{font-family:'DM Mono';font-size:11px;font-weight:400;line-height:1;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #111}.nc small{font-size:9.5px;font-weight:500;line-height:1;white-space:nowrap;display:block}.nc.on{background:var(--ink);color:#fff}.nc:disabled{border-color:#e0e0dc;color:#c4c4c0;background:#fafaf8}
+.tkl td,.tkl th{padding:7px 3px}.tkl td:first-child{padding-left:0}.t input.ko2{width:44px;padding:4px 2px}.t button.x{border:none;background:none;font-size:15px;color:var(--mute);padding:0 4px;line-height:1}
+.kst{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 6px;border-top:1.5px solid var(--ink);padding-top:8px;margin-top:6px}.kst label{font-family:'DM Mono';font-size:9px;color:var(--mute);display:block;letter-spacing:.06em}.kst b{font-size:14px;font-weight:700;white-space:nowrap}
+.sum{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-top:1.5px solid var(--ink);margin-top:6px;font-weight:700}
+.kbar{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;margin:2px 0 4px}.kbar .lnk-s{margin-left:0;white-space:nowrap}
+.kph{font-size:10.5px;color:var(--soft);font-weight:400;margin-left:8px;letter-spacing:.02em}
+.aim{color:#c0392b;font-weight:700;margin-left:6px}.note.aimn{color:#c0392b;margin:0 0 10px}
+/* 結果の反映: 当たった買い目＝薄緑、返還＝薄黄、外れ＝薄く */
+.tkl tr.hit td,.tkl tr.hb td{background:var(--g)}.tkl tr.back td,.tkl tr.hb.bk td{background:var(--y)}.tkl tr.miss td{opacity:.42}
+.tkl tr.hit td,.tkl tr.back td{border-bottom:none}
+.tkl tr.hb td{text-align:left;font-size:11px;padding:0 4px 8px 0;white-space:normal}
+.hbl{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:0 7px;margin-right:8px;font-size:10px;font-weight:700;line-height:1.7;background:#fff;letter-spacing:.04em}
+.tkl .hret{font-size:12.5px;font-weight:700;margin-right:8px}.tkl tr.hb small{margin-left:0;font-size:10.5px}
+.kres{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 10px;font-size:12.5px;font-weight:700;padding:10px 8px;border:1px solid var(--line);margin-top:10px;background:#fff;letter-spacing:.04em}
+.kres.win{background:var(--g)}.kres small{font-weight:400;color:var(--mute);font-size:10.5px;margin-left:8px}
+.t .rk{display:inline-block;margin-left:6px;padding:0 5px;border:1px solid var(--ink);border-radius:999px;font-size:9px;line-height:1.5;color:var(--ink);font-weight:700}
+.payt .dash{font-family:'DM Mono';color:var(--mute);margin:0 1px}.payt tr:has(+tr.cont) td{border-bottom-color:transparent}
+.rb .cd .w1{font-weight:700;color:var(--ink)}
+/* records / member */
+.card{border:1.5px solid var(--ink);border-radius:12px;background:#fff;padding:12px;margin-top:10px}
+.card .ttl{display:flex;align-items:center;gap:10px}
+.card .ttl i{width:28px;height:28px;display:block;flex:0 0 28px}
+.card .ttl b{font-size:13px;font-weight:700;display:block}
+.card .ttl span{font-size:11px;color:var(--mute);font-weight:500;display:block}
+.card .ttl .mono{margin-left:auto;font-size:10px;color:var(--mute)}
+.lnk{display:flex;align-items:center;gap:12px;border:1.5px solid var(--ink);border-radius:12px;padding:12px;text-decoration:none;margin-top:10px;background:#fff;text-align:left;width:100%}
+.lnk i{width:30px;height:30px;display:block;flex:0 0 30px}
+.lnk b{display:block;font-size:13px}.lnk span{font-size:11px;color:var(--mute)}
+.stat{display:flex;gap:1.5px;background:var(--ink);border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;margin-top:12px}
+.stat div{flex:1;background:#fff;padding:10px 8px;text-align:center}
+.stat label{display:block;font-family:'DM Mono';font-size:8.5px;color:var(--mute);letter-spacing:.1em}
+.stat b{font-family:'DM Mono';font-size:22px;font-weight:400}
+.mini{display:flex;gap:3px;margin-top:6px;flex-wrap:wrap}
+.mini b{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-family:'DM Mono';font-weight:400;box-shadow:inset 0 0 0 1.5px #111}
+.foot{font-size:10px;color:var(--soft);line-height:1.7;margin-top:24px;text-align:center}
+.empty{border:1.5px dashed #bbb;border-radius:12px;padding:18px;text-align:center;color:var(--mute);font-size:12px;font-weight:500;margin-top:10px}
+/* bottom bar */
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1.5px solid var(--ink);z-index:30}
+.nav .in{max-width:520px;margin:0 auto;display:flex;justify-content:space-around;padding:8px 0 10px}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9.5px;font-weight:700;color:var(--mute);width:80px}
+.nav button i{width:24px;height:24px;display:block}
+.nav button em{font-style:normal;font-family:'DM Mono';font-size:7.5px;letter-spacing:.12em;color:var(--soft);font-weight:400;line-height:1;margin-top:1px}
+.nav button.on{color:var(--ink)}
+.nav button:not(.on) svg{stroke:#888}
+
+/* race page extras */
+.hito{margin-top:12px;border:1.5px solid var(--ink);border-radius:12px;background:var(--y);padding:10px 12px;font-size:12px;font-weight:500;line-height:1.7}
+.hito div{padding-left:1em;text-index:-1em;position:relative}.hito div:before{content:"・";position:absolute;left:0}
+.fsvg svg{display:block}
+.pm .pmb{position:relative;height:22px;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;background:linear-gradient(90deg,var(--g) 0 32%,var(--y) 32% 55%,var(--p) 55% 100%);display:flex}
+.pm .pmb span{flex:1;text-align:center;font-family:'DM Mono';font-size:10px;line-height:20px;color:var(--mute)}
+.pm .pmb i{position:absolute;top:-1px;bottom:-1px;width:3px;background:var(--ink);transform:translateX(-50%)}
+.pm .pml{display:flex;justify-content:space-between;font-size:11px;font-weight:500;margin-top:6px;gap:8px;flex-wrap:wrap}
+.t tr[data-h]{cursor:pointer}
+.hcard{display:none}.hcard.on{display:table-row}
+.hcard td{padding:0 0 8px;text-align:left;white-space:normal}
+.hc{border:1px solid var(--line);border-radius:4px;padding:10px;background:#f7f7f7}
+.hcl{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}.hcl b{font-family:'DM Mono';font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:400}.hcl span{font-size:14px;font-weight:700}
+.hcg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:var(--ink);border:1.5px solid var(--ink);border-radius:8px;overflow:hidden}
+.hcg div{background:#fff;padding:7px 8px 6px}.hcg label{display:block;font-size:9.5px;color:var(--mute);font-weight:500}.hcg b{display:block;font-size:13px;font-weight:700}.hcg b.mono{font-weight:400}.hcg i{display:block;font-style:normal;font-size:9.5px;color:var(--soft);font-weight:500}
+.hcg.ans{margin-top:0;background:transparent;border:none;gap:6px;border-radius:0}
+.hcg.ans div{border:1.5px solid var(--ink);border-radius:8px}
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gc{border:1.5px solid var(--ink);border-radius:10px;padding:8px}.gc.g{background:var(--g)}.gc.p{background:var(--p)}
+.gc label{display:block;font-size:10px;font-weight:700;margin-bottom:6px}.gc div{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:4px;flex-wrap:wrap}.gc div b{font-weight:700}.gc div .mono{font-size:9.5px;color:var(--mute);width:100%;padding-left:28px}
+.tk{display:grid;gap:8px}.tk>div{border:1.5px solid var(--ink);border-radius:10px;padding:8px 10px;background:#fff}
+.tk label{display:block;font-size:10.5px;font-weight:700;margin-bottom:6px}.tks{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}.tks .dash{font-family:'DM Mono';color:var(--mute);margin:0 1px}.tk i{display:block;font-style:normal;font-size:10px;color:var(--mute);font-weight:500;margin-top:6px}
+.resu .row{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #e3e3df;font-size:13px;font-weight:700}.resu .pl{width:34px;font-family:'DM Mono';font-size:12px}.resu .nm{flex:1}.resu .nm small{font-weight:500;color:var(--soft);margin-left:5px;font-size:10px}
+
+/* look:applied */
+body{font-weight:400}
+body{font-family:'M PLUS Rounded 1c','M PLUS Rounded 1c','Zen Kaku Gothic New','Hiragino Maru Gothic ProN',Meiryo,sans-serif}
+
+body{background:#efefef;margin:0}
+.pvh{max-width:760px;margin:0 auto;padding:22px 16px 4px}
+.pvh b{display:block;font-size:17px;letter-spacing:.08em}
+.pvh p{font-size:11.5px;color:#5a5a5a;letter-spacing:.04em;line-height:1.8;margin:6px 0 0}
+.pv{display:flex;flex-wrap:wrap;gap:28px 24px;justify-content:center;padding:18px 16px 60px}
+.frame{width:375px;flex:none}
+.flabel{font-size:14px;font-weight:700;letter-spacing:.06em;margin:0 0 2px 2px}
+.fdesc{font-size:11px;color:#5a5a5a;letter-spacing:.02em;margin:0 0 8px 2px;line-height:1.6;white-space:nowrap}
+.frame .wrap{padding:12px 14px 30px;margin:0;max-width:none;box-shadow:0 1px 0 #ddd}
+.frame .sec{margin-top:6px}
+@media (max-width:420px){.pv{padding:10px 0 40px}.frame{width:100%}.flabel,.fdesc{margin-left:14px}}
+/* 案の中の枠番号は字間を詰める（本文の字間 .14em が効いて「1 4」と開くため） */
+.frame .cap{letter-spacing:0}
+/* A */
+.vA td{vertical-align:middle}.vA tr:first-child td{border-top:1px solid var(--line)}
+.vA .q-rk{width:30px;white-space:nowrap;padding-right:0}.vA .q-rk b{font-family:'DM Mono';font-size:21px;font-weight:500;line-height:1}
+.vA .q-rk small{font-size:10px;color:var(--mute);margin-left:1px;font-family:inherit}
+.vA td.nm{font-size:13.5px;letter-spacing:.04em}.vA td.nm small{font-family:inherit;letter-spacing:.04em;font-size:10px;margin-top:3px}
+.vA .q-rt b{display:block;font-family:'DM Mono';font-size:14px;font-weight:500;line-height:1.2}.vA .q-rt small{display:block;margin:3px 0 0;font-size:10px;font-family:inherit}
+.vA tr.q-r1 td.nm{font-size:15px}.vA tr.q-r1 .q-rk b{font-size:24px}
+/* B */
+.vB .q-c1{border:1.5px solid var(--ink);border-radius:10px;background:var(--y);padding:12px 12px 10px}
+.vB .q-top{display:flex;align-items:center;gap:10px}
+.vB .q-rk{font-family:'DM Mono';font-size:30px;line-height:1;font-weight:500;white-space:nowrap}
+.vB .q-rk small{font-size:11px;margin-left:1px;font-family:'Noto Sans JP',sans-serif;font-weight:500}
+.vB .cap.q-big{width:30px;height:30px;font-size:14px;flex:none}
+.vB .q-top .nm{font-size:17px;font-weight:700;letter-spacing:.04em;line-height:1.3;white-space:nowrap}
+.vB .q-top .nm small{display:block;font-size:10.5px;color:var(--mute);font-weight:500}
+.vB .q-st{display:grid;grid-template-columns:repeat(3,1fr);margin-top:10px;border-top:1px solid rgba(0,0,0,.18);padding-top:8px}
+.vB .q-st label{display:block;font-size:9.5px;color:var(--mute);letter-spacing:.04em}.vB .q-st b{font-family:'DM Mono';font-size:15px;font-weight:500}
+.vB .q-c23{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.vB .q-c{border:1.5px solid var(--ink);border-radius:10px;padding:9px 10px 8px;background:#fff;min-width:0}
+.vB .q-c .q-hd{display:flex;align-items:center;gap:6px}.vB .q-c .q-rk{font-size:20px}
+.vB .q-c .q-pp{margin-left:auto;font-size:10.5px;color:var(--mute);letter-spacing:.02em;white-space:nowrap}
+.vB .q-c .nm{font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-top:6px;white-space:nowrap}
+.vB .q-c .q-ft{font-family:'DM Mono';font-size:12.5px;margin-top:2px}.vB .q-c .q-ft small{color:var(--soft);margin-left:6px;font-size:10.5px}
+/* C */
+.vC .q-hero{padding:2px 0 14px}
+.vC .q-l1{display:flex;align-items:center;gap:12px}
+.vC .q-big{font-family:'DM Mono';font-size:46px;line-height:.9;font-weight:500}
+.vC .cap.q-xl{width:32px;height:32px;font-size:15px;flex:none}
+.vC .q-l1 .nm{font-size:18px;font-weight:700;letter-spacing:.04em;white-space:nowrap;line-height:1.3}
+.vC .q-l1 .nm small{display:block;font-size:10.5px;color:var(--mute);font-weight:500;letter-spacing:.04em}
+.vC .kv4 b{font-size:14px;font-weight:500}
+.vC .q-rest{border-top:1px solid var(--line)}
+.vC .q-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.vC .q-row .q-rk{font-family:'DM Mono';font-size:19px;width:18px;font-weight:500}
+.vC .q-row .nm{font-size:13.5px;font-weight:700;white-space:nowrap;letter-spacing:.04em;line-height:1.3}
+.vC .q-row .nm small{display:block;font-size:10px;color:var(--mute);font-weight:500}
+.vC .q-mg{margin-left:auto;text-align:right;font-family:'DM Mono';font-size:14px;font-weight:500;line-height:1.2}
+.vC .q-mg small{display:block;font-size:10px;color:var(--soft);font-weight:400}
+/* D */
+.vD .q-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.vD .q-row:first-child{border-top:1px solid var(--line)}
+.vD .q-rk{font-family:'DM Mono';font-size:19px;width:18px;font-weight:500}
+.vD .nm{font-size:13.5px;font-weight:700;white-space:nowrap;letter-spacing:.04em;line-height:1.3}
+.vD .nm small{display:block;font-size:10px;color:var(--mute);font-weight:500}
+.vD .q-tm{margin-left:auto;text-align:right;line-height:1.2}.vD .q-tm b{display:block;font-family:'DM Mono';font-size:14px;font-weight:500}
+.vD .q-tm small{display:block;font-size:10px;color:var(--soft)}
+.vD .q-strip{position:relative;height:132px;margin-top:14px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.vD .q-cp{position:absolute;left:10px;top:6px;font-size:10px;color:var(--mute);letter-spacing:.04em}
+.vD .q-ln{position:absolute;left:10px;right:10px;height:1px;background:var(--line)}
+.vD .q-pc{position:absolute}
+.vD .q-gl{position:absolute;top:22px;bottom:22px;width:1.5px;background:var(--ink)}
+.vD .q-gt{position:absolute;bottom:5px;font-size:9.5px;font-weight:700;letter-spacing:.02em}
+.vD .q-tk{position:absolute;top:22px;bottom:22px;width:0;border-left:1px dashed #c8c8c8}
+.vD em{position:absolute;bottom:5px;width:40px;text-align:center;font-style:normal;font-family:'DM Mono';font-size:9.5px;color:var(--soft)}
+/* E */
+.vE td{vertical-align:middle}.vE tr:first-child td{border-top:1px solid var(--line)}
+.vE .q-rk{font-family:'DM Mono';font-size:13px;white-space:nowrap;width:30px}
+.vE td.nm{letter-spacing:.04em}.vE td.nm small{font-family:inherit;font-size:10px;margin-top:3px}
+.vE .q-py div{display:flex;justify-content:flex-end;align-items:baseline;gap:7px;white-space:nowrap;line-height:1.55}
+.vE .q-py span{font-size:10px;color:var(--mute)}.vE .q-py b{font-family:'DM Mono';font-size:13px;font-weight:500}
+</style></head><body><div class="pvh"><b>結果欄 1〜3着まわりのデザイン案</b><p>9/22 中山11R JRAアニバの実データ。スマホ幅（375px）で並べています。</p></div><div class="pv"><div class="frame"><div class="flabel">現状</div><div class="fdesc">いまの表示。1〜3着だけ見出しと左の罫線が無い。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><div class="tw"><table class="t rest"><thead><tr><th class="l">着</th><th class="l">番</th><th class="l">馬名</th><th>人気</th><th>タイム</th></tr></thead><tbody><tr><td class="l mono">1着</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="l nm">レディーフランシス<small>追込</small></td><td class="mono">7人気</td><td class="mono">1:52.0</td></tr><tr><td class="l mono">2着</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="l nm">ディーズゴールド<small>逃げ</small></td><td class="mono">2人気</td><td class="mono">1:52.2</td></tr><tr><td class="l mono">3着</td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="l nm">リフレックス<small>先行</small></td><td class="mono">1人気</td><td class="mono">1:52.3</td></tr></tbody></table></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">単勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,370円</td><td class="mono">7人気</td></tr><tr><td class="l">複勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">370円</td><td class="mono">6人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">190円</td><td class="mono">2人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">170円</td><td class="mono">1人気</td></tr><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div><div class="frame"><div class="flabel">A 表を整える</div><div class="fdesc">表のまま。番号を大きく、右にタイムと人気。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><h3>着順</h3><div class="sbd"><div class="tw"><table class="t vA"><tbody><tr class="q-r1"><td class="l q-rk"><b>1</b><small>着</small></td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="l nm">レディーフランシス<small>大野・追込</small></td><td class="q-rt"><b>1:52.0</b><small>7人気</small></td></tr><tr class="q-r2"><td class="l q-rk"><b>2</b><small>着</small></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="l nm">ディーズゴールド<small>丹内祐次・逃げ</small></td><td class="q-rt"><b>1:52.2</b><small>2人気</small></td></tr><tr class="q-r3"><td class="l q-rk"><b>3</b><small>着</small></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="l nm">リフレックス<small>横山武史・先行</small></td><td class="q-rt"><b>1:52.3</b><small>1人気</small></td></tr></tbody></table></div></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">単勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,370円</td><td class="mono">7人気</td></tr><tr><td class="l">複勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">370円</td><td class="mono">6人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">190円</td><td class="mono">2人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">170円</td><td class="mono">1人気</td></tr><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div><div class="frame"><div class="flabel">B 表彰台</div><div class="fdesc">1着を大きな札に、2着・3着を横に並べる。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><h3>着順</h3><div class="sbd"><div class="vB"><div class="q-c1"><div class="q-top"><span class="q-rk">1<small>着</small></span><span class="cap q-big" style="background:#f0870f;color:#fff">14</span><span class="nm">レディーフランシス<small>大野・追込</small></span></div><div class="q-st"><div><label>人気</label><b>7</b></div><div><label>タイム</label><b>1:52.0</b></div><div><label>上がり3F</label><b>37.3</b></div></div></div><div class="q-c23"><div class="q-c"><div class="q-hd"><span class="q-rk">2<small>着</small></span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="q-pp">2人気</span></div><div class="nm">ディーズゴールド</div><div class="q-ft">1:52.2<small>1.1/4</small></div></div><div class="q-c"><div class="q-hd"><span class="q-rk">3<small>着</small></span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="q-pp">1人気</span></div><div class="nm">リフレックス</div><div class="q-ft">1:52.3<small>3/4</small></div></div></div></div></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">単勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,370円</td><td class="mono">7人気</td></tr><tr><td class="l">複勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">370円</td><td class="mono">6人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">190円</td><td class="mono">2人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">170円</td><td class="mono">1人気</td></tr><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div><div class="frame"><div class="flabel">C 1着を主役に</div><div class="fdesc">1着に数字を集め、2着・3着は1行で着差。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><h3>着順</h3><div class="sbd"><div class="vC"><div class="q-hero"><div class="q-l1"><span class="q-big">1</span><span class="cap q-xl" style="background:#f0870f;color:#fff">14</span><span class="nm">レディーフランシス<small>大野・追込・7人気</small></span></div><div class="kv4"><div><label>タイム</label><b class="mono">1:52.0</b></div><div><label>上がり3F</label><b class="mono">37.3</b></div><div><label>通過</label><b class="mono">12-11-1-2</b></div></div></div><div class="q-rest"><div class="q-row"><span class="q-rk">2</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="nm">ディーズゴールド<small>丹内祐次・2人気</small></span><span class="q-mg">1.1/4<small>1:52.2</small></span></div><div class="q-row"><span class="q-rk">3</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="nm">リフレックス<small>横山武史・1人気</small></span><span class="q-mg">3/4<small>1:52.3</small></span></div></div></div></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">単勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,370円</td><td class="mono">7人気</td></tr><tr><td class="l">複勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">370円</td><td class="mono">6人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">190円</td><td class="mono">2人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">170円</td><td class="mono">1人気</td></tr><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div><div class="frame"><div class="flabel">D ゴール前の差</div><div class="fdesc">タイム差を線で見せる。接戦かひと目で。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><h3>着順</h3><div class="sbd"><div class="vD"><div class="q-row"><span class="q-rk">1</span><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="nm">レディーフランシス<small>大野・7人気</small></span><span class="q-tm"><b>1:52.0</b><small>　</small></span></div><div class="q-row"><span class="q-rk">2</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="nm">ディーズゴールド<small>丹内祐次・2人気</small></span><span class="q-tm"><b>1:52.2</b><small>+0.2秒</small></span></div><div class="q-row"><span class="q-rk">3</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="nm">リフレックス<small>横山武史・1人気</small></span><span class="q-tm"><b>1:52.3</b><small>+0.3秒</small></span></div><div class="q-strip"><span class="q-cp">ゴールの瞬間（勝ち馬との差）</span><i class="q-ln" style="top:37px"></i><span class="q-pc" style="left:251px;top:26px"><span class="cap" style="background:#f0870f;color:#fff">14</span></span><i class="q-ln" style="top:65px"></i><span class="q-pc" style="left:207px;top:54px"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></span><i class="q-ln" style="top:93px"></i><span class="q-pc" style="left:185px;top:82px"><span class="cap" style="background:#38a05a;color:#fff">12</span></span><i class="q-gl" style="left:262px"></i><b class="q-gt" style="left:249px">ゴール</b><i class="q-tk" style="left:152px"></i><em style="left:132px">0.5秒</em><i class="q-tk" style="left:42px"></i><em style="left:22px">1.0秒</em></div></div></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">単勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,370円</td><td class="mono">7人気</td></tr><tr><td class="l">複勝</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">370円</td><td class="mono">6人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">190円</td><td class="mono">2人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">170円</td><td class="mono">1人気</td></tr><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div><div class="frame"><div class="flabel">E 単勝・複勝と一体</div><div class="fdesc">各馬の横に単勝・複勝。払戻表は連勝式だけ。</div><div class="wrap"><div class="sec"><div class="sh"><i>5</i><b>結果・答え合わせ</b><span>確定</span></div><h3>着順</h3><div class="sbd"><div class="tw"><table class="t vE"><tbody><tr><td class="l q-rk">1着</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="l nm">レディーフランシス<small>7人気・1:52.0</small></td><td class="q-py"><div><span>単勝</span><b>1,370円</b></div><div><span>複勝</span><b>370円</b></div></td></tr><tr><td class="l q-rk">2着</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="l nm">ディーズゴールド<small>2人気・1:52.2</small></td><td class="q-py"><div><span>複勝</span><b>190円</b></div></td></tr><tr><td class="l q-rk">3着</td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="l nm">リフレックス<small>1人気・1:52.3</small></td><td class="q-py"><div><span>複勝</span><b>170円</b></div></td></tr></tbody></table></div><div class="note">単勝・複勝の払戻（100円あたり）は各馬の横に。</div></div><h3>払戻</h3><div class="sbd"><div class="tw"><table class="t payt"><thead><tr><th class="l">券種</th><th class="l">組み合わせ</th><th>払戻</th><th>人気</th></tr></thead><tbody><tr><td class="l">枠連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">2</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">7</span></td><td class="mono">2,490円</td><td class="mono">12人気</td></tr><tr><td class="l">馬連</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">5,320円</td><td class="mono">18人気</td></tr><tr><td class="l">ワイド</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,740円</td><td class="mono">20人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">1,450円</td><td class="mono">15人気</td></tr><tr class="cont"><td class="l"></td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">450円</td><td class="mono">1人気</td></tr><tr><td class="l">馬単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span></td><td class="mono">12,080円</td><td class="mono">42人気</td></tr><tr><td class="l">3連複</td><td class="l"><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">–</span><span class="cap" style="background:#38a05a;color:#fff">12</span><span class="dash">–</span><span class="cap" style="background:#f0870f;color:#fff">14</span></td><td class="mono">6,190円</td><td class="mono">10人気</td></tr><tr><td class="l">3連単</td><td class="l"><span class="cap" style="background:#f0870f;color:#fff">14</span><span class="dash">＞</span><span class="cap" style="background:#2b2b2b;color:#fff">3</span><span class="dash">＞</span><span class="cap" style="background:#38a05a;color:#fff">12</span></td><td class="mono">55,440円</td><td class="mono">125人気</td></tr></tbody></table></div><div class="note">100円あたり。</div><div class="kres win"><span>的中 3点／購入3点</span><b class="mono">10,000円 → 76,110円（+66,110円）</b></div></div><h3>答え合わせ</h3><div class="sbd"><div class="hcg ans"><div><label>AIの本命</label><b>12 リフレックス</b><i>3着（勝率 32.6%）</i></div></div></div></div></div></div></div></body></html>
